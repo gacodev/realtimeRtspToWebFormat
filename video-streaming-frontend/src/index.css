@@ -1,0 +1,33 @@
+/* src/index.css */
+
+/* Estilo general para centrar el contenido en la página */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f0f0; /* Color de fondo suave */
+  text-align: center;
+}
+
+/* Estilo para el título */
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333; /* Color del texto del título */
+}
+
+/* Estilo para el contenedor del video */
+.video-container {
+  width: 80%; /* Ancho del contenedor del video */
+  max-width: 800px; /* Ancho máximo del contenedor del video */
+  aspect-ratio: 16/9; /* Relación de aspecto 16:9 */
+  background-color: #000; /* Fondo negro para el área del video */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ddd; /* Borde sutil alrededor del contenedor */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}

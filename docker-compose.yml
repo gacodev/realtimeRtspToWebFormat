@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=realtime
+    networks:
+      - rtspstreamer_network  
+
+  seeder:
+    build:
+      context: ./video-streaming-backend
+    container_name: seeder
+    depends_on:
+      - mongo
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/realtime
+      - RTSP_URL=
+    command: ["node", "seeder.js"]
+    networks:
+      - rtspstreamer_network
+
+  backend:
+    build:
+      context: ./video-streaming-backend
+    container_name: backend
+    depends_on:
+      - mongo
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/realtime 
+      - RTSP_URL=
+    ports:
+      - "3003:3000"
+    networks:
+      - rtspstreamer_network  
+
+  frontend:
+    build:
+      context: ./video-streaming-frontend
+    container_name: frontend
+    ports:
+      - "5003:3000"
+    depends_on:
+      - backend
+    networks:
+      - rtspstreamer_network
+
+networks:
+  rtspstreamer_network:
+    name: rtspstreamer_network
+    driver: bridge
