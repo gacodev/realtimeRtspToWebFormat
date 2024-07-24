@@ -19,7 +19,7 @@ services:
       - mongo
     environment:
       - MONGODB_URI=mongodb://mongo:27017/realtime
-      - RTSP_URL=
+      - RTSP_URL=rtsp://admin:*Simm12345@10.10.90.100/Streaming/Channels/1
     command: ["node", "seeder.js"]
     networks:
       - rtspstreamer_network
@@ -32,9 +32,9 @@ services:
       - mongo
     environment:
       - MONGODB_URI=mongodb://mongo:27017/realtime 
-      - RTSP_URL=
+      - RTSP_URL=rtsp://admin:*Simm12345@10.10.90.100/Streaming/Channels/1
     ports:
-      - "3003:3000"
+      - "3000:3000"
     networks:
       - rtspstreamer_network  
 
@@ -43,7 +43,7 @@ services:
       context: ./video-streaming-frontend
     container_name: frontend
     ports:
-      - "5003:3000"
+      - "5000:3000"
     depends_on:
       - backend
     networks:
